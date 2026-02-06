@@ -15,31 +15,155 @@
 
 ## Deployment Options
 
-### Option 1: Docker Deployment (Recommended for Full Functionality)
+### Option 1: Docker Deployment Platforms (Recommended for Full Functionality)
 
-**Deploy to platforms that support Docker:**
+All these platforms support Docker and will have full GDAL functionality:
 
-#### Railway
-```bash
-# Connect GitHub repo to Railway
-# Railway auto-detects Dockerfile
-# Deploy with one click
-```
+#### 🚂 Railway (Easiest)
+**Best for:** Quick deployment, free tier, GitHub integration
+- **Website:** https://railway.app
+- **Free Tier:** Yes (500 hours/month)
+- **Setup:**
+  1. Sign up with GitHub
+  2. Click "New Project" → "Deploy from GitHub repo"
+  3. Select your repository
+  4. Railway auto-detects Dockerfile
+  5. Deploy! (GDAL works automatically)
+- **Pros:** Easiest setup, auto-deploys on git push, free tier
+- **Cons:** Limited free tier hours
 
-#### Fly.io
-```bash
-flyctl launch
-# Follow prompts
-flyctl deploy
-```
+#### 🪰 Fly.io
+**Best for:** Global edge deployment, good free tier
+- **Website:** https://fly.io
+- **Free Tier:** Yes (3 shared VMs)
+- **Setup:**
+  ```bash
+  # Install flyctl
+  curl -L https://fly.io/install.sh | sh
+  
+  # Login
+  flyctl auth login
+  
+  # Launch (creates fly.toml)
+  flyctl launch
+  
+  # Deploy
+  flyctl deploy
+  ```
+- **Pros:** Global edge network, good free tier, fast
+- **Cons:** Requires CLI setup
 
-#### Google Cloud Run
-```bash
-gcloud run deploy gdal-app \
-  --source . \
-  --platform managed \
-  --region us-central1
-```
+#### ☁️ Google Cloud Run
+**Best for:** Enterprise, scalable, pay-per-use
+- **Website:** https://cloud.google.com/run
+- **Free Tier:** Yes (2 million requests/month)
+- **Setup:**
+  ```bash
+  # Install gcloud CLI
+  # Authenticate
+  gcloud auth login
+  
+  # Deploy
+  gcloud run deploy gdal-app \
+    --source . \
+    --platform managed \
+    --region us-central1 \
+    --allow-unauthenticated
+  ```
+- **Pros:** Enterprise-grade, auto-scaling, generous free tier
+- **Cons:** Requires Google Cloud account setup
+
+#### 🐳 DigitalOcean App Platform
+**Best for:** Simple Docker deployment, good pricing
+- **Website:** https://www.digitalocean.com/products/app-platform
+- **Free Tier:** No (but affordable $5/month)
+- **Setup:**
+  1. Connect GitHub repository
+  2. Select "Docker" as source type
+  3. App Platform detects Dockerfile
+  4. Deploy!
+- **Pros:** Simple UI, good documentation, reliable
+- **Cons:** No free tier (but cheap)
+
+#### 🐙 Render
+**Best for:** Free tier, easy setup, similar to Heroku
+- **Website:** https://render.com
+- **Free Tier:** Yes (with limitations)
+- **Setup:**
+  1. Sign up with GitHub
+  2. New → Web Service
+  3. Connect repository
+  4. Select "Docker" environment
+  5. Deploy!
+- **Pros:** Free tier, easy setup, auto-deploy
+- **Cons:** Free tier spins down after inactivity
+
+#### ☁️ AWS App Runner
+**Best for:** AWS ecosystem integration
+- **Website:** https://aws.amazon.com/apprunner/
+- **Free Tier:** No (pay-per-use, ~$0.007/vCPU-hour)
+- **Setup:**
+  1. Go to AWS App Runner console
+  2. Create service → Source: Container registry or source code
+  3. Connect GitHub or use ECR
+  4. Deploy!
+- **Pros:** AWS integration, auto-scaling
+- **Cons:** AWS account required, more complex
+
+#### 🐳 Azure Container Instances (ACI)
+**Best for:** Microsoft ecosystem
+- **Website:** https://azure.microsoft.com/services/container-instances/
+- **Free Tier:** $200 credit for 30 days
+- **Setup:**
+  ```bash
+  # Using Azure CLI
+  az container create \
+    --resource-group myResourceGroup \
+    --name gdal-app \
+    --image your-registry/gdal-app \
+    --dns-name-label gdal-app \
+    --ports 8501
+  ```
+- **Pros:** Azure integration, enterprise features
+- **Cons:** More complex setup
+
+#### 🐋 Heroku (with Container Registry)
+**Best for:** Familiar platform, good documentation
+- **Website:** https://www.heroku.com
+- **Free Tier:** Discontinued (paid only now)
+- **Setup:**
+  ```bash
+  # Install Heroku CLI
+  heroku login
+  heroku container:login
+  heroku create gdal-app
+  heroku container:push web
+  heroku container:release web
+  ```
+- **Pros:** Well-documented, reliable
+- **Cons:** No free tier anymore
+
+#### 🚀 Vercel (with Docker)
+**Best for:** Frontend-focused, but supports Docker
+- **Website:** https://vercel.com
+- **Free Tier:** Yes
+- **Setup:**
+  1. Connect GitHub repo
+  2. Select "Docker" as framework
+  3. Deploy!
+- **Pros:** Great free tier, fast CDN
+- **Cons:** More focused on frontend apps
+
+#### 🌊 Netlify (with Docker)
+**Best for:** JAMstack, but supports Docker functions
+- **Website:** https://www.netlify.com
+- **Free Tier:** Yes
+- **Setup:**
+  1. Connect GitHub
+  2. Build settings: Docker
+  3. Deploy!
+- **Pros:** Great free tier, edge functions
+- **Cons:** Better for static sites
 
 #### Local Docker
 ```bash
@@ -111,14 +235,22 @@ Platforms with better GDAL support:
 
 4. **Access at:** http://localhost:8501
 
-## Comparison
+## Platform Comparison
 
-| Platform | GDAL Support | Setup Difficulty | Cost |
-|----------|-------------|------------------|------|
-| Streamlit Cloud | ❌ No | ⭐ Easy | Free |
-| Docker (Railway/Fly.io) | ✅ Yes | ⭐⭐ Medium | Free tier available |
-| Local Development | ✅ Yes | ⭐⭐⭐ Hard | Free |
-| Heroku | ✅ Possible | ⭐⭐ Medium | Free tier available |
+| Platform | GDAL Support | Setup | Free Tier | Best For |
+|----------|-------------|-------|-----------|----------|
+| **Streamlit Cloud** | ❌ No | ⭐ Very Easy | ✅ Yes | Quick demos |
+| **Railway** | ✅ Yes | ⭐ Easy | ✅ Yes (500hrs) | Easiest Docker |
+| **Fly.io** | ✅ Yes | ⭐⭐ Medium | ✅ Yes (3 VMs) | Global edge |
+| **Google Cloud Run** | ✅ Yes | ⭐⭐ Medium | ✅ Yes (2M req) | Enterprise |
+| **DigitalOcean App** | ✅ Yes | ⭐ Easy | ❌ No ($5/mo) | Simple & reliable |
+| **Render** | ✅ Yes | ⭐ Easy | ✅ Yes (spins down) | Free tier |
+| **AWS App Runner** | ✅ Yes | ⭐⭐⭐ Hard | ❌ No (pay-per-use) | AWS ecosystem |
+| **Azure ACI** | ✅ Yes | ⭐⭐⭐ Hard | ✅ $200 credit | Azure ecosystem |
+| **Heroku** | ✅ Yes | ⭐⭐ Medium | ❌ No (paid) | Familiar platform |
+| **Vercel** | ✅ Yes | ⭐ Easy | ✅ Yes | Frontend-focused |
+| **Netlify** | ✅ Yes | ⭐ Easy | ✅ Yes | Static sites |
+| **Local Docker** | ✅ Yes | ⭐⭐ Medium | ✅ Free | Development |
 
 ## Recommendation
 
