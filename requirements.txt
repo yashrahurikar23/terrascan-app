@@ -1,6 +1,5 @@
-# GDAL will try to build against system libraries installed via packages.txt
-# If python3-gdal system package is installed, this should work
-gdal>=3.8.0
+# GDAL - try to install, but make it optional for cloud platforms
+# If system python3-gdal is installed, we can use that instead
 streamlit>=1.28.0
 numpy>=1.24.0
 pillow>=10.0.0

@@ -88,23 +88,25 @@ def main():
         
         GDAL (Geospatial Data Abstraction Library) is required to process images.
         
-        **To install GDAL on Fedora/RHEL:**
+        **For Local Installation (Fedora/RHEL):**
         ```bash
-        sudo dnf install gdal gdal-devel python3-gdal
-        ```
-        
-        **Then install the Python package:**
-        ```bash
+        sudo dnf install -y gcc-c++ make python3-devel gdal gdal-devel python3-gdal
         cd /home/metheus/projects/image_processing
         uv pip install gdal
         ```
         
-        **Or use the setup script:**
+        **For Local Installation (Ubuntu/Debian):**
         ```bash
-        ./setup.sh
+        sudo apt-get update
+        sudo apt-get install -y libgdal-dev gdal-bin python3-gdal
+        pip install gdal
         ```
         
-        After installation, restart this Streamlit app.
+        **For Cloud Platforms (Streamlit Cloud):**
+        GDAL installation on cloud platforms can be challenging due to system dependencies.
+        The app will work in limited mode without GDAL, showing this message instead of processing images.
+        
+        **Alternative:** Consider using a platform that supports GDAL installation, or use Docker deployment.
         """)
         st.code(f"Error: {GDAL_ERROR}", language="python")
         return
