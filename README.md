@@ -4,7 +4,28 @@ This project demonstrates how to use GDAL (Geospatial Data Abstraction Library) 
 
 ## Installation
 
-### Quick Setup with uv (Recommended)
+### Cloud Deployment (Streamlit Cloud, etc.)
+
+For cloud platforms like Streamlit Cloud, the `packages.txt` file is automatically used to install system dependencies.
+
+**Requirements:**
+- The `packages.txt` file is already included in the repository
+- GDAL system libraries will be installed automatically
+- Python packages from `requirements.txt` will be installed after system packages
+
+**Deploy to Streamlit Cloud:**
+1. Fork or connect this repository to Streamlit Cloud
+2. Streamlit Cloud will automatically:
+   - Install system packages from `packages.txt`
+   - Install Python packages from `requirements.txt`
+   - Deploy your app
+
+**Note:** If GDAL installation fails on cloud platforms, ensure:
+- `packages.txt` includes: `libgdal-dev`, `gdal-bin`, `python3-gdal`
+- The platform supports system package installation
+- Check platform-specific documentation for GDAL installation
+
+### Quick Setup with uv (Recommended for Local Development)
 
 This project uses `uv` for fast Python package management. The setup script will guide you through the installation:
 
