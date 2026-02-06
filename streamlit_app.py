@@ -230,11 +230,27 @@ def main():
                 # Display key metrics in columns
                 col_a, col_b = st.columns(2)
                 with col_a:
-                    st.metric("Width", f"{info['width']:,} px")
-                    st.metric("Height", f"{info['height']:,} px")
+                    st.metric(
+                        "Width", 
+                        f"{info['width']:,} px",
+                        help="The number of pixels in the horizontal (X) direction. This represents the image width in pixels."
+                    )
+                    st.metric(
+                        "Height", 
+                        f"{info['height']:,} px",
+                        help="The number of pixels in the vertical (Y) direction. This represents the image height in pixels."
+                    )
                 with col_b:
-                    st.metric("Bands", info['bands'])
-                    st.metric("Total Pixels", f"{info['width'] * info['height']:,}")
+                    st.metric(
+                        "Bands", 
+                        info['bands'],
+                        help="The number of spectral bands (channels) in the image. Common examples: 1 (grayscale), 3 (RGB), 4 (RGBA), or more for multispectral/hyperspectral imagery."
+                    )
+                    st.metric(
+                        "Total Pixels", 
+                        f"{info['width'] * info['height']:,}",
+                        help="Total number of pixels in the image (Width × Height). This is the total data points in a single band."
+                    )
                 
                 st.divider()
                 
@@ -259,21 +275,56 @@ def main():
                     st.markdown("#### Geotransform Parameters")
                     col_c, col_d = st.columns(2)
                     with col_c:
-                        st.write(f"**Origin X:** `{info['origin_x']:.6f}`")
-                        st.write(f"**Origin Y:** `{info['origin_y']:.6f}`")
+                        st.metric(
+                            "Origin X", 
+                            f"{info['origin_x']:.6f}",
+                            help="The X coordinate (longitude or easting) of the top-left corner of the image in the coordinate system. This is the geospatial reference point."
+                        )
+                        st.metric(
+                            "Origin Y", 
+                            f"{info['origin_y']:.6f}",
+                            help="The Y coordinate (latitude or northing) of the top-left corner of the image in the coordinate system. This is the geospatial reference point."
+                        )
                     with col_d:
-                        st.write(f"**Pixel Width:** `{info['pixel_width']:.6f}`")
-                        st.write(f"**Pixel Height:** `{info['pixel_height']:.6f}`")
+                        st.metric(
+                            "Pixel Width", 
+                            f"{info['pixel_width']:.6f}",
+                            help="The ground distance (in coordinate system units) that one pixel represents in the X direction. Positive values indicate eastward, negative indicates westward."
+                        )
+                        st.metric(
+                            "Pixel Height", 
+                            f"{info['pixel_height']:.6f}",
+                            help="The ground distance (in coordinate system units) that one pixel represents in the Y direction. Usually negative (northward) in most coordinate systems."
+                        )
                     
                     # Bounds
                     if 'bounds' in info:
                         st.divider()
                         st.markdown("#### Spatial Bounds")
                         bounds = info['bounds']
-                        st.write(f"**Min X:** `{bounds['min_x']:.6f}`")
-                        st.write(f"**Max X:** `{bounds['max_x']:.6f}`")
-                        st.write(f"**Min Y:** `{bounds['min_y']:.6f}`")
-                        st.write(f"**Max Y:** `{bounds['max_y']:.6f}`")
+                        col_b1, col_b2 = st.columns(2)
+                        with col_b1:
+                            st.metric(
+                                "Min X", 
+                                f"{bounds['min_x']:.6f}",
+                                help="The minimum (westernmost) X coordinate of the image extent. The left boundary of the image in the coordinate system."
+                            )
+                            st.metric(
+                                "Min Y", 
+                                f"{bounds['min_y']:.6f}",
+                                help="The minimum (southernmost) Y coordinate of the image extent. The bottom boundary of the image in the coordinate system."
+                            )
+                        with col_b2:
+                            st.metric(
+                                "Max X", 
+                                f"{bounds['max_x']:.6f}",
+                                help="The maximum (easternmost) X coordinate of the image extent. The right boundary of the image in the coordinate system."
+                            )
+                            st.metric(
+                                "Max Y", 
+                                f"{bounds['max_y']:.6f}",
+                                help="The maximum (northernmost) Y coordinate of the image extent. The top boundary of the image in the coordinate system."
+                            )
                     
                     # Projection
                     if info.get('projection_name'):
@@ -302,13 +353,29 @@ def main():
                         # Statistics in columns
                         col_e, col_f, col_g, col_h = st.columns(4)
                         with col_e:
-                            st.metric("Min", f"{band_info['min']:.2f}")
+                            st.metric(
+                                "Min", 
+                                f"{band_info['min']:.2f}",
+                                help="The minimum pixel value in this band. Represents the darkest/lowest value in the image data."
+                            )
                         with col_f:
-                            st.metric("Max", f"{band_info['max']:.2f}")
+                            st.metric(
+                                "Max", 
+                                f"{band_info['max']:.2f}",
+                                help="The maximum pixel value in this band. Represents the brightest/highest value in the image data."
+                            )
                         with col_g:
-                            st.metric("Mean", f"{band_info['mean']:.2f}")
+                            st.metric(
+                                "Mean", 
+                                f"{band_info['mean']:.2f}",
+                                help="The average (arithmetic mean) of all pixel values in this band. Indicates the overall brightness level of the image."
+                            )
                         with col_h:
-                            st.metric("Std Dev", f"{band_info['std_dev']:.2f}")
+                            st.metric(
+                                "Std Dev", 
+                                f"{band_info['std_dev']:.2f}",
+                                help="Standard deviation of pixel values. Measures the spread/variability of pixel values. Higher values indicate more contrast and variation in the image."
+                            )
                         
                         st.divider()
                         
@@ -518,9 +585,25 @@ def main():
                                     ndvi = processor.calculate_ndvi(dataset, red_band, nir_band)
                                     
                                     # Display NDVI statistics
-                                    st.metric("NDVI Min", f"{ndvi.min():.3f}")
-                                    st.metric("NDVI Max", f"{ndvi.max():.3f}")
-                                    st.metric("NDVI Mean", f"{ndvi.mean():.3f}")
+                                    col_ndvi1, col_ndvi2, col_ndvi3 = st.columns(3)
+                                    with col_ndvi1:
+                                        st.metric(
+                                            "NDVI Min", 
+                                            f"{ndvi.min():.3f}",
+                                            help="Minimum NDVI value. NDVI ranges from -1 to +1. Values near -1 indicate water or non-vegetated areas, values near +1 indicate dense healthy vegetation."
+                                        )
+                                    with col_ndvi2:
+                                        st.metric(
+                                            "NDVI Max", 
+                                            f"{ndvi.max():.3f}",
+                                            help="Maximum NDVI value. Higher values (closer to +1) indicate areas with the most healthy, dense vegetation in the image."
+                                        )
+                                    with col_ndvi3:
+                                        st.metric(
+                                            "NDVI Mean", 
+                                            f"{ndvi.mean():.3f}",
+                                            help="Average NDVI value across the entire image. Values > 0.3 typically indicate vegetation presence, > 0.6 indicates dense vegetation."
+                                        )
                                     
                                     # Apply colormap for visualization
                                     # Normalize NDVI to 0-1 for colormap
@@ -567,9 +650,25 @@ def main():
                                     dataset, norm_band, norm_method, output_min, output_max
                                 )
                                 
-                                st.metric("Normalized Min", f"{normalized.min():.2f}")
-                                st.metric("Normalized Max", f"{normalized.max():.2f}")
-                                st.metric("Normalized Mean", f"{normalized.mean():.2f}")
+                                col_norm1, col_norm2, col_norm3 = st.columns(3)
+                                with col_norm1:
+                                    st.metric(
+                                        "Normalized Min", 
+                                        f"{normalized.min():.2f}",
+                                        help="Minimum value after normalization. For minmax: matches output_min. For zscore: may be negative (standard deviations below mean)."
+                                    )
+                                with col_norm2:
+                                    st.metric(
+                                        "Normalized Max", 
+                                        f"{normalized.max():.2f}",
+                                        help="Maximum value after normalization. For minmax: matches output_max. For zscore: may be positive (standard deviations above mean)."
+                                    )
+                                with col_norm3:
+                                    st.metric(
+                                        "Normalized Mean", 
+                                        f"{normalized.mean():.2f}",
+                                        help="Average value after normalization. For minmax: typically near the middle of output range. For zscore: should be near 0 (mean of standardized data)."
+                                    )
                                 
                                 # Display normalized band
                                 if norm_method == 'minmax':
