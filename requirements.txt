@@ -1,6 +1,6 @@
-# Try to install GDAL - if system libraries are available, this might work
-# If it fails, the app will handle it gracefully
-gdal>=3.8.0
+# GDAL version must match system GDAL version (3.6.2 on Streamlit Cloud)
+# Using version constraint to match system libraries
+gdal>=3.6.0,<3.7.0
 streamlit>=1.28.0
 numpy>=1.24.0
 pillow>=10.0.0
