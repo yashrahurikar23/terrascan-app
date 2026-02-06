@@ -706,7 +706,11 @@ def main():
                 if 'band_info' in info and len(info['band_info']) > 0:
                     data_type_size = info['band_info'][0].get('data_type_size', 8)
                     estimated_size = (total_size * data_type_size) / (8 * 1024 * 1024)  # MB
-                    st.write(f"**Estimated Size:** {estimated_size:.2f} MB")
+                    st.metric(
+                        "Estimated Size", 
+                        f"{estimated_size:.2f} MB",
+                        help="Estimated memory size required to load the entire image into memory. Calculated as: (Width × Height × Bands × DataTypeSize) / 8. This is the uncompressed size in memory."
+                    )
                 
         else:
             st.info("Upload and process an image to see details here")
