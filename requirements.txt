@@ -1,4 +1,6 @@
-gdal>=3.8.0
+# Note: GDAL is installed via system package (python3-gdal) in packages.txt
+# If you need to install GDAL Python package separately, uncomment the line below
+# gdal>=3.8.0
 streamlit>=1.28.0
 numpy>=1.24.0
 pillow>=10.0.0
