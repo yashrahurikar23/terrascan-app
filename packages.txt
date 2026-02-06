@@ -1,5 +1,3 @@
-# System packages required for GDAL on cloud platforms (Ubuntu/Debian based)
-# This file is used by Streamlit Cloud and similar platforms
 libgdal-dev
 gdal-bin
 python3-gdal
