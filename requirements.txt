@@ -1,6 +1,6 @@
-# GDAL version must match system GDAL version (3.6.2 on Streamlit Cloud)
-# Using version constraint to match system libraries
-gdal>=3.6.0,<3.7.0
+# GDAL removed - not installable on Streamlit Cloud due to system dependency conflicts
+# For full GDAL functionality, use Docker deployment (see Dockerfile)
+# The app handles missing GDAL gracefully
 streamlit>=1.28.0
 numpy>=1.24.0
 pillow>=10.0.0
