@@ -1,4 +1,4 @@
-# Phase 2: GDAL Basics
+# Phase 2b: GDAL Basics (Advanced Geospatial)
 
 ## What You'll Learn
 
@@ -7,6 +7,18 @@
 - Understanding datasets and bands
 - Extracting metadata
 - Basic GDAL operations
+
+---
+
+## ⚠️ Before You Start
+
+**New to image processing?** Consider starting with **Pillow Basics** first! See `02_pillow_basics/README.md` for a lightweight introduction.
+
+**Pillow vs GDAL:**
+- **Pillow**: Easy installation, perfect for learning, no geospatial data
+- **GDAL**: Advanced features, geospatial support, more complex installation
+
+**You can learn both!** Start with Pillow to understand concepts, then learn GDAL for geospatial features.
 
 ---
 
@@ -27,6 +39,19 @@
 - Works with many formats
 - Powerful processing capabilities
 - Industry standard
+- **Full geospatial support** (coordinates, projections, etc.)
+
+**When to Use GDAL:**
+- Need geospatial data (coordinates, projections)
+- Professional geospatial workflows
+- Advanced format support
+- Production applications
+
+**When Pillow is Enough:**
+- Learning image processing
+- Basic operations (no geospatial data)
+- Quick development
+- Network/size constraints
 
 ### 2. GDAL Core Concepts
 

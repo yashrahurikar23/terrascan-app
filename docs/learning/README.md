@@ -12,6 +12,7 @@ This folder contains everything you need to learn image processing from scratch 
 
 - **`QUICK_START.md`** - Start here! Quick overview and getting started guide
 - **`LEARNING_PLAN.md`** - Complete 8-phase learning trajectory with detailed plan
+- **`PILLOW_VS_GDAL.md`** - ⭐ NEW! Which library should you learn? Comparison guide
 - **`QGIS_INTEGRATION.md`** - How to use QGIS as a learning tool
 
 ### Phase-by-Phase Learning
@@ -19,12 +20,13 @@ This folder contains everything you need to learn image processing from scratch 
 Each phase has its own folder with detailed guides:
 
 1. **`01_fundamentals/`** - What are digital images? Basic concepts
-2. **`02_gdal_basics/`** - Introduction to GDAL library
-3. **`03_geospatial_concepts/`** - Coordinate systems, projections, georeferencing
-4. **`04_image_operations/`** - Format conversion, normalization, colormaps
-5. **`05_spectral_indices/`** - NDVI, vegetation indices, spectral analysis
-6. **`06_visualization/`** - Histograms, scatter plots, correlation matrices
-7. **`07_advanced_topics/`** - Performance, metadata, batch processing
+2. **`02_pillow_basics/`** - ⭐ NEW! Lightweight Pillow library (easy start)
+3. **`02_gdal_basics/`** - Advanced GDAL library (geospatial features)
+4. **`03_geospatial_concepts/`** - Coordinate systems, projections, georeferencing
+5. **`04_image_operations/`** - Format conversion, normalization, colormaps
+6. **`05_spectral_indices/`** - NDVI, vegetation indices, spectral analysis
+7. **`06_visualization/`** - Histograms, scatter plots, correlation matrices
+8. **`07_advanced_topics/`** - Performance, metadata, batch processing
 
 ### Projects Folder
 
@@ -45,6 +47,20 @@ Each phase has its own folder with detailed guides:
 
 ### Recommended Learning Path
 
+**Option 1: Start with Pillow (Easier) ⭐ Recommended**
+```
+Week 1-2: Fundamentals + Pillow Basics
+  ↓
+Week 2-3: GDAL Basics (when ready for geospatial)
+  ↓
+Week 3-4: Geospatial Concepts + Image Operations
+  ↓
+Week 5-6: Spectral Indices + Visualization
+  ↓
+Week 7-8: Advanced Topics + Final Project
+```
+
+**Option 2: Direct to GDAL (Advanced)**
 ```
 Week 1-2: Fundamentals + GDAL Basics
   ↓
@@ -87,12 +103,13 @@ Week 7-8: Advanced Topics + Final Project
 By completing this learning path, you will:
 
 - ✅ Understand digital images and raster data
-- ✅ Master GDAL for geospatial operations
+- ✅ Master Pillow for basic image processing (lightweight start)
+- ✅ Master GDAL for geospatial operations (advanced)
 - ✅ Perform image processing operations
 - ✅ Calculate spectral indices (NDVI, etc.)
 - ✅ Create visualizations and analyses
 - ✅ Build a complete Streamlit application
-- ✅ Handle geospatial metadata and projections
+- ✅ Handle geospatial metadata and projections (GDAL)
 
 ---
 
@@ -103,12 +120,13 @@ As you learn each concept, you'll see it in your app:
 | Phase | App Feature |
 |-------|-------------|
 | Phase 1 | Overview tab (dimensions, bands) |
-| Phase 2 | All tabs (GDAL powers everything) |
-| Phase 3 | Geospatial tab (coordinates, bounds) |
-| Phase 4 | Operations tab (format, normalization, colormap) |
-| Phase 5 | Operations tab (NDVI calculation) |
-| Phase 6 | Visualizations tab (all charts) |
-| Phase 7 | Advanced tab (metadata, memory) |
+| Phase 2a (Pillow) | All tabs (basic operations) - ⭐ Works without GDAL! |
+| Phase 2b (GDAL) | All tabs (full geospatial support) |
+| Phase 3 | Geospatial tab (coordinates, bounds) - GDAL only |
+| Phase 4 | Operations tab (format, normalization, colormap) - Both work! |
+| Phase 5 | Operations tab (NDVI calculation) - Both work! |
+| Phase 6 | Visualizations tab (all charts) - Both work! |
+| Phase 7 | Advanced tab (metadata, memory) - Both work! |
 
 **The app is your learning playground!**
 
@@ -121,7 +139,8 @@ Track your progress as you go:
 - [ ] Read QUICK_START.md
 - [ ] Read LEARNING_PLAN.md
 - [ ] Phase 1: Fundamentals
-- [ ] Phase 2: GDAL Basics
+- [ ] Phase 2a: Pillow Basics (⭐ Start here if GDAL is hard to install!)
+- [ ] Phase 2b: GDAL Basics (Advanced geospatial)
 - [ ] Phase 3: Geospatial Concepts
 - [ ] Phase 4: Image Operations
 - [ ] Phase 5: Spectral Indices
@@ -149,9 +168,12 @@ Before starting, make sure you have:
 
 - ✅ Python installed (3.8+)
 - ✅ Basic Python knowledge (variables, functions, imports)
-- ✅ GDAL installed (see main README.md)
+- ✅ **Pillow installed** (easy: `pip install pillow`) - ⭐ Start here!
+- ✅ **GDAL installed** (optional, for geospatial features - see main README.md)
 - ✅ Your app running locally
 - ✅ (Optional) QGIS installed for visual learning
+
+**Tip:** Start with Pillow! It's easier to install and perfect for learning. Add GDAL later when you need geospatial features.
 
 ---
 

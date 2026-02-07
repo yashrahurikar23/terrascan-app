@@ -94,9 +94,44 @@ conda install -c conda-forge gdal
 ### Streamlit Web App (Recommended)
 
 Run the interactive web application:
+
+**⭐ Option 1: Use streamlit_app.py (Simplest)**
 ```bash
 streamlit run streamlit_app.py
 ```
+This automatically sets up the Python path - just run this!
+
+**Option 2: Using the run script**
+```bash
+# Make sure script is executable
+chmod +x run_app.sh
+
+# Run the app
+./run_app.sh
+```
+
+**Option 3: Using Python script**
+```bash
+python run_app.py
+```
+
+**Option 4: Manual (set PYTHONPATH)**
+```bash
+# Set Python path and run
+export PYTHONPATH="${PWD}/src:${PYTHONPATH}"
+streamlit run src/terrascan/app.py
+```
+
+**Option 5: Install as package (Best for Development)**
+```bash
+# Install in development mode
+pip install -e .
+
+# Then run normally
+streamlit run src/terrascan/app.py
+```
+
+**Note:** If you see "No module named 'terrascan'", use Option 1, 2, 3, or 5. Option 4 requires setting PYTHONPATH manually.
 
 The app will open in your browser where you can:
 - Upload image files (GeoTIFF, JPEG, PNG, etc.)
@@ -111,15 +146,15 @@ The app will open in your browser where you can:
 
 Run the example script:
 ```bash
-python gdal_example.py
+python src/examples/gdal_example.py
 ```
 
-### Using the GDAL Utility Module
+### Using the GDAL Processor Module
 
-The `gdal_utils.py` module provides reusable functions for GDAL operations:
+The `terrascan.processors.gdal_processor` module provides reusable functions for GDAL operations:
 
 ```python
-from gdal_utils import GDALImageProcessor
+from terrascan.processors import GDALImageProcessor
 
 # Initialize processor
 processor = GDALImageProcessor()
@@ -184,20 +219,32 @@ GDAL supports 100+ raster formats including:
 ## Project Structure
 
 ```
-image_processing/
-├── .venv/                 # Virtual environment (created by uv)
-├── gdal_utils.py          # GDAL utility functions module
-├── streamlit_app.py       # Streamlit web application
-├── gdal_example.py        # Command-line example script
-├── setup.sh               # Setup script for uv
+terrascan-app/
+├── src/                    # Source code
+│   ├── terrascan/         # Main package
+│   │   ├── app.py         # Streamlit application
+│   │   ├── processors/    # Image processing backends
+│   │   │   └── gdal_processor.py
+│   │   ├── utils/         # Utility functions
+│   │   └── visualizations/ # Visualization helpers
+│   └── examples/          # Example scripts
+├── docs/                   # Documentation
+│   ├── learning/         # Learning resources
+│   ├── deployment/        # Deployment guides
+│   ├── installation/      # Installation guides
+│   └── guides/            # Feature guides
+├── scripts/                # Utility scripts
+├── streamlit_app.py       # Entry point
 ├── requirements.txt       # Python dependencies
-├── .gitignore            # Git ignore file
-└── README.md             # This file
+├── setup.sh               # Setup script
+└── README.md              # This file
 ```
+
+For detailed structure information, see [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md).
 
 ## Features
 
-- **GDAL Utility Module** (`gdal_utils.py`): Reusable functions for:
+- **GDAL Processor Module** (`src/terrascan/processors/gdal_processor.py`): Reusable functions for:
   - Opening images (from file or bytes)
   - Extracting comprehensive image metadata
   - Reading band data as NumPy arrays
@@ -205,11 +252,21 @@ image_processing/
   - Format conversion
   - Information formatting for display
 
-- **Streamlit Web App** (`streamlit_app.py`): Interactive interface for:
+- **Streamlit Web App** (`src/terrascan/app.py`): Interactive interface for:
   - Image upload and processing
   - Visual image preview
   - Detailed metadata display
   - Band information and statistics
+  - Advanced visualizations
+  - Image operations (NDVI, normalization, colormaps)
+
+## Documentation
+
+- **[Project Structure](PROJECT_STRUCTURE.md)** - Detailed project organization
+- **[Learning Resources](docs/learning/README.md)** - Complete learning path
+- **[Installation Guides](docs/installation/)** - Installation instructions
+- **[Deployment Guides](docs/deployment/)** - Deployment options
+- **[Feature Guides](docs/guides/)** - Feature documentation
 
 ## Resources
 

@@ -46,14 +46,57 @@ By the end of this plan, you will:
 
 ---
 
-### Phase 2: GDAL Basics (Week 2-3)
-**Goal:** Learn GDAL - the tool we're using in our app
+### Phase 2: Image Processing Libraries (Week 2-3)
+**Goal:** Learn image processing libraries - start with Pillow, then GDAL
 
-#### Topics:
+#### Part A: Pillow Basics (Lightweight Start) ⭐ NEW!
+
+**Why Start with Pillow?**
+- Easy installation (no system dependencies)
+- Perfect for learning concepts
+- Works immediately
+- Great for basic operations
+
+**Topics:**
+1. **What is Pillow?**
+   - Lightweight Python image library
+   - Easy installation
+   - Pillow vs GDAL - when to use which
+
+2. **Basic Pillow Operations**
+   - Opening images
+   - Reading image properties
+   - Getting statistics
+   - Working with bands
+
+3. **What You Can Do with Pillow**
+   - Image reading/writing
+   - Format conversion
+   - Statistics and analysis
+   - Normalization
+   - Basic visualizations
+
+**Practical Exercises:**
+- Open images with Pillow
+- Extract image properties
+- Calculate statistics
+- Convert between formats
+- Create basic visualizations
+
+**Resources:** See `02_pillow_basics/` folder
+
+#### Part B: GDAL Basics (Advanced Geospatial)
+
+**When to Use GDAL:**
+- Need geospatial data (coordinates, projections)
+- Professional geospatial workflows
+- Advanced format support
+
+**Topics:**
 1. **What is GDAL?**
    - Geospatial Data Abstraction Library
    - Why GDAL is powerful
-   - GDAL vs other tools
+   - GDAL vs Pillow - when to use which
 
 2. **GDAL Core Concepts**
    - Datasets and bands
@@ -74,6 +117,8 @@ By the end of this plan, you will:
 - Display basic statistics
 
 **Resources:** See `02_gdal_basics/` folder
+
+**Note:** You can start with Pillow and learn GDAL later, or learn both!
 
 ---
 
@@ -261,31 +306,38 @@ By the end of this plan, you will:
 
 As you progress through each phase, you'll build components of the app:
 
-### Phase 1-2: Foundation
+### Phase 1-2a: Foundation (Pillow) ⭐
 - ✅ Basic image reading and display
 - ✅ Image information extraction
+- ✅ **Works without GDAL!**
 
-### Phase 3: Geospatial Features
+### Phase 2b: Foundation (GDAL)
+- ✅ Basic image reading and display
+- ✅ Image information extraction
+- ✅ Geospatial metadata
+
+### Phase 3: Geospatial Features (GDAL only)
 - ✅ Coordinate system display
 - ✅ Geotransform visualization
 - ✅ Spatial bounds
+- ⚠️ Requires GDAL
 
-### Phase 4: Operations Tab
-- ✅ Format conversion
-- ✅ Normalization
-- ✅ Colormap application
+### Phase 4: Operations Tab (Both work!)
+- ✅ Format conversion (Pillow & GDAL)
+- ✅ Normalization (Pillow & GDAL)
+- ✅ Colormap application (Pillow & GDAL)
 
-### Phase 5: Spectral Analysis
-- ✅ NDVI calculation
+### Phase 5: Spectral Analysis (Both work!)
+- ✅ NDVI calculation (Pillow & GDAL)
 - ✅ Other indices (future)
 
-### Phase 6: Visualizations Tab
-- ✅ Histograms
-- ✅ Band comparisons
-- ✅ Scatter plots
-- ✅ Correlation matrices
+### Phase 6: Visualizations Tab (Both work!)
+- ✅ Histograms (Pillow & GDAL)
+- ✅ Band comparisons (Pillow & GDAL)
+- ✅ Scatter plots (Pillow & GDAL)
+- ✅ Correlation matrices (Pillow & GDAL)
 
-### Phase 7: Polish
+### Phase 7: Polish (Both work!)
 - ✅ Error handling
 - ✅ Performance optimization
 - ✅ Advanced features
@@ -298,6 +350,10 @@ As you progress through each phase, you'll build components of the app:
 learning_resources/
 ├── LEARNING_PLAN.md (this file)
 ├── 01_fundamentals/
+│   ├── README.md
+│   ├── exercises/
+│   └── examples/
+├── 02_pillow_basics/ ⭐ NEW!
 │   ├── README.md
 │   ├── exercises/
 │   └── examples/
@@ -360,7 +416,8 @@ learning_resources/
 Track your progress by checking off completed items:
 
 - [ ] Phase 1: Fundamentals
-- [ ] Phase 2: GDAL Basics
+- [ ] Phase 2a: Pillow Basics ⭐ (Start here if GDAL is hard!)
+- [ ] Phase 2b: GDAL Basics (Advanced geospatial)
 - [ ] Phase 3: Geospatial Concepts
 - [ ] Phase 4: Image Operations
 - [ ] Phase 5: Spectral Indices

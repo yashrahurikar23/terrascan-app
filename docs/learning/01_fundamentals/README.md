@@ -223,5 +223,20 @@ Before moving to Phase 2, make sure you can:
 - [ ] Create a histogram
 - [ ] Understand what "bands" or "channels" mean
 
-**Ready for Phase 2?** Once you're comfortable with these concepts, move on to GDAL Basics!
+**Ready for Phase 2?** 
+
+You have two options:
+
+1. **Start with Pillow Basics** (`02_pillow_basics/`) ⭐ **Recommended for beginners!**
+   - Easy installation
+   - Perfect for learning
+   - No system dependencies
+   - Great for basic operations
+
+2. **Go to GDAL Basics** (`02_gdal_basics/`)
+   - Advanced geospatial features
+   - Professional workflows
+   - Full coordinate system support
+
+**Tip:** Start with Pillow to learn concepts, then move to GDAL when you need geospatial features!
 
